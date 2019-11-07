@@ -1,3 +1,6 @@
+React + Storybook + Lerna 构建自己的前端UI组件库
+https://juejin.im/post/5a8a905c6fb9a06350151e4c#heading-0
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

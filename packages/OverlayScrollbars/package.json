@@ -1,0 +1,28 @@
+{
+    "name": "react-overlayscrollbars",
+    "version": "0.2.1",
+    "description": "This project is based on the overlayscrollbar project and is developed.",
+    "main": "dist/cjs/index.js",
+    "module": "dist/es/index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "build": "rollup -c ../../rollup.config.js"
+    },
+    "dependencies": {
+        "overlayscrollbars": "^1.8.0",
+        "prop-types": "^15.7.2",
+        "react": "^16.9.0"
+    },
+    "author": "Roy",
+    "license": "MIT",
+    "gitHead": "87f1b0bfe521e44f1cb00e7ba08588b2861d6d06",
+    "keywords": [
+      "react",
+      "overlayscrollbars"
+    ],
+    "homepage": "https://github.com/realRoyHsu/rui/tree/master/packages/scrollbar",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/realRoyHsu/rui.git"
+    }
+}
