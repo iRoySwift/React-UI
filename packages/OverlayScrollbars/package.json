@@ -20,9 +20,9 @@
       "react",
       "overlayscrollbars"
     ],
-    "homepage": "https://github.com/realRoyHsu/rui/tree/master/packages/scrollbar",
+    "homepage": "https://github.com/realRoyHsu/React-UI",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/realRoyHsu/rui.git"
+        "url": "https://github.com/realRoyHsu/React-UI.git"
     }
 }
