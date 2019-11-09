@@ -1,12 +1,21 @@
+import path from 'path';
+// import { writeFileSync } from 'fs';
 import babel from 'rollup-plugin-babel';
-import resolve from 'rollup-plugin-node-resolve';
+import resolve from 'rollup-plugin-node-resolve'; // 在 node_modules 中使用 node 解决算法( ) 来定位模块
+import replace from 'rollup-plugin-replace';
 import filesize from 'rollup-plugin-filesize';
 import clear from 'rollup-plugin-clear';
-// import sass from 'rollup-plugin-sass';
-import postcss from 'rollup-plugin-postcss';
+import commonjs from 'rollup-plugin-commonjs';// 转换commonjs 为es6
+import json from 'rollup-plugin-json'; // Convert .json files to ES6 modules
 import svg from 'rollup-plugin-react-svg';
-// import { writeFileSync } from 'fs';
-// import path from 'path';
+import alias from 'rollup-plugin-alias';
+import { terser } from 'rollup-plugin-terser'; // 压缩js
+import eslint from 'rollup-plugin-eslint';
+import postcss from 'rollup-plugin-postcss';
+import simplevars from 'postcss-simple-vars'; // 可以使用Sass风格的变量
+import nested from 'postcss-nested'; // 允许使用嵌套规则
+import cssnext from 'postcss-cssnext';// 这个插件集使得大多数现代CSS语法(通过最新的CSS标准)可用
+import cssnano from 'cssnano'; // 压缩，减小输出CSS文件大小。相当于JavaScript中对应的UglifyJS。
 
 const external = ['react', 'prop-types', 'overlayscrollbars'];
 const output = [
@@ -20,32 +29,52 @@ export default {
   output,
   name: 'my-library',
   plugins: [
-    resolve(),
-    filesize(),
-    clear({
-      targets: ['dist'],
-      watch: true,
+    alias({
+      '@': path.resolve(__dirname, './src'),
     }),
-    postcss({
-      plugins: [],
-      extract: true,
-      minimize: false,
-      sourceMap: false,
-    }),
-    // sass({
-    //   output: styles => writeFileSync(path.resolve('./dist', 'index.css'), styles),
-    //   options: {
-    //     importer(url) {
-    //       return url.startsWith('~') && ({
-    //         file: `${process.cwd()}/node_modules/${url.slice(1)}`
-    //       })
-    //     }
-    //   }
-    // }),
     babel({
       exclude: 'node_modules/**',
       presets: ['@babel/preset-env', '@babel/preset-react'],
     }),
+    clear({
+      targets: ['dist'],
+      watch: true,
+    }),
+    commonjs(),
+    eslint({
+      exclude: [
+        'src/styles/**',
+      ],
+    }),
+    filesize(),
+    json(),
+    postcss({
+      plugins: [
+        simplevars(),
+        nested(),
+        // 在cssnext()中配置了{ warnForDuplicates: false }是因为它和cssnano()都使用了Autoprefixer，会导致一个警告。不用计较配置, 我们只需要知道它被执行了两次(在这个例子中没什么坏处)并且取消了警告。
+        cssnext({ warnForDuplicates: false }),
+        cssnano()
+      ],
+      inject: false,
+      sourceMap: true,
+      extensions: ['.css'],
+      extract: true, // 输出路径
+    }),
+    resolve(),
     svg(),
+    replace({
+      exclude: 'node_modules',
+      ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+    }),
+    (process.env.NODE_ENV === 'production' && terser({
+      output: {
+        comments: 'all', // 保留所有注释
+        ascii_only: true, // 仅输出ascii字符
+      },
+      compress: {
+        pure_funcs: ['console.log'], // 去掉console.log函数
+      },
+    }))
   ],
 };

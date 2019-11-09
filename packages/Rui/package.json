@@ -9,14 +9,15 @@
     "build": "rollup -c ../../rollup.config.js"
   },
   "dependencies": {
-    "overlayscrollbars": "^1.8.0",
+    "overlayscrollbars": "^1.10.0",
     "prop-types": "^15.7.2",
-    "react": "^16.9.0"
+    "react": "^16.11.0"
   },
   "keywords": [
     "react",
     "overlayscrollbars"
   ],
   "author": "Roy",
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "a716d3bc4eb09cd356edf6fe810856eafc90f407"
 }

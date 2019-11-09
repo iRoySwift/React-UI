@@ -4,103 +4,103 @@ import OverlayScrollbars from 'overlayscrollbars';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
 
 class ScrollBar extends Component {
-    componentDidMount() {
-        this.init();
-    }
-    componentWillUnmount() {
-        this.scrollBars = null;
-    }
+  componentDidMount() {
+    this.init();
+  }
+  componentWillUnmount() {
+    this.scrollBars = null;
+  }
 
-    init () {
-        const {
-            className,
-            resize,
-            sizeAutoCapable,
-            clipAlways,
-            normalizeRTL,
-            paddingAbsolute,
-            autoUpdate,
-            autoUpdateInterval,
-            nativeScrollbarsOverlaid,
-            overflowBehavior,
-            scrollbars,
-            textarea,
-            callbacks,
-        } = this.props;
-        this.scrollBars = OverlayScrollbars(this.ScrollbarRef, {
-            className,
-            resize,
-            sizeAutoCapable,
-            clipAlways,
-            normalizeRTL,
-            paddingAbsolute,
-            autoUpdate,
-            autoUpdateInterval,
-            nativeScrollbarsOverlaid,
-            overflowBehavior,
-            scrollbars,
-            textarea,
-            callbacks,
-        });
-    }
+  init () {
+    const {
+        className,
+        resize,
+        sizeAutoCapable,
+        clipAlways,
+        normalizeRTL,
+        paddingAbsolute,
+        autoUpdate,
+        autoUpdateInterval,
+        nativeScrollbarsOverlaid,
+        overflowBehavior,
+        scrollbars,
+        textarea,
+        callbacks,
+      } = this.props;
+      this.scrollBars = OverlayScrollbars(this.ScrollbarRef, {
+          className,
+          resize,
+          sizeAutoCapable,
+          clipAlways,
+          normalizeRTL,
+          paddingAbsolute,
+          autoUpdate,
+          autoUpdateInterval,
+          nativeScrollbarsOverlaid,
+          overflowBehavior,
+          scrollbars,
+          textarea,
+          callbacks,
+      });
+  }
 
-    getScrollBars(name, ...args) {
-        return this.scrollBars[name](...args);
-    }
+  getScrollBars(name, ...args) {
+      return this.scrollBars[name](...args);
+  }
 
-    options(...args) {
-        return this.getScrollBars('options', ...args);
-    }
-    update() {
-        this.getScrollBars('update');
-    }
-    sleep() {
-        this.getScrollBars('sleep');
-    }
-    scroll(...args) {
-        return this.getScrollBars('scroll', ...args);
-    }
-    scrollStop() {
-        this.getScrollBars('scrollStop');
-    }
-    getElements(...args) {
-        return this.getScrollBars('getElements', ...args);
-    }
-    getState(...args) {
-        return this.getScrollBars('getState', ...args);
-    }
-    destroy() {
-        this.getScrollBars('destroy');
-    }
-    ext(...args) {
-        return this.getScrollBars('ext', ...args);
-    }
-    addExt(...args) {
-        return this.getScrollBars('addExt', ...args);
-    }
-    removeExt(...args) {
-        this.getScrollBars('removeExt', ...args);
-    }
-    defaultOptions() {
-        return OverlayScrollbars.defaultOptions();
-    }
-    globals() {
-        return OverlayScrollbars.globals();
-    }
-    extension(...args) {
-        return OverlayScrollbars.extension(...args);
-    }
+  options(...args) {
+      return this.getScrollBars('options', ...args);
+  }
+  update() {
+      this.getScrollBars('update');
+  }
+  sleep() {
+      this.getScrollBars('sleep');
+  }
+  scroll(...args) {
+      return this.getScrollBars('scroll', ...args);
+  }
+  scrollStop() {
+      this.getScrollBars('scrollStop');
+  }
+  getElements(...args) {
+      return this.getScrollBars('getElements', ...args);
+  }
+  getState(...args) {
+      return this.getScrollBars('getState', ...args);
+  }
+  destroy() {
+      this.getScrollBars('destroy');
+  }
+  ext(...args) {
+      return this.getScrollBars('ext', ...args);
+  }
+  addExt(...args) {
+      return this.getScrollBars('addExt', ...args);
+  }
+  removeExt(...args) {
+      this.getScrollBars('removeExt', ...args);
+  }
+  defaultOptions() {
+      return OverlayScrollbars.defaultOptions();
+  }
+  globals() {
+      return OverlayScrollbars.globals();
+  }
+  extension(...args) {
+      return OverlayScrollbars.extension(...args);
+  }
 
-    render() {
-        return (
-            <div id={this.props.id}
-                 ref={el => this.ScrollbarRef = el}
-                 style={{...this.props.style}}>
-                {/* eslint-disable-next-line */}
-                {this.props.children}
-            </div>
-        );
-    }
+  render() {
+      return (
+          <div id={this.props.id}
+               ref={el => this.ScrollbarRef = el}
+               style={{...this.props.style}}>
+              {/* eslint-disable-next-line */}
+              {this.props.children}
+          </div>
+      );
+  }
 }
 
 ScrollBar.propTypes = {
