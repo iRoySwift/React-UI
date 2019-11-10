@@ -10,7 +10,6 @@ import json from 'rollup-plugin-json'; // Convert .json files to ES6 modules
 import svg from 'rollup-plugin-react-svg';
 import alias from 'rollup-plugin-alias';
 import { terser } from 'rollup-plugin-terser'; // 压缩js
-import eslint from 'rollup-plugin-eslint';
 import postcss from 'rollup-plugin-postcss';
 import simplevars from 'postcss-simple-vars'; // 可以使用Sass风格的变量
 import nested from 'postcss-nested'; // 允许使用嵌套规则
@@ -41,11 +40,6 @@ export default {
       watch: true,
     }),
     commonjs(),
-    eslint({
-      exclude: [
-        'src/styles/**',
-      ],
-    }),
     filesize(),
     json(),
     postcss({
