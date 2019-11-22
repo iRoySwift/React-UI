@@ -93,12 +93,12 @@ class ScrollBar extends Component {
 
   render() {
       return (
-          <div id={this.props.id}
-               ref={el => this.ScrollbarRef = el}
-               style={{...this.props.style}}>
-              {/* eslint-disable-next-line */}
+        <div id={this.props.id}
+             ref={el => this.ScrollbarRef = el}
+             style={{...this.props.style}}>
+          {/* eslint-disable-next-line */}
               {this.props.children}
-          </div>
+        </div>
       );
   }
 }

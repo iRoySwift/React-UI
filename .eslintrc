@@ -31,6 +31,7 @@
     ],
     // 定义自己的规则
     "rules": {
+        "react/jsx-indent": [2, 2, {"checkAttributes": true}],
         // rules中的值0、1、2分别表示不开启检查、警告、错误
         "indent": 0, // JavaScript代码强制使用一致的缩进：4格缩进
         "linebreak-style": [2, "unix"], // 强制使用一致的换行符风格 (linebreak-style)
@@ -60,7 +61,7 @@
             "objects": "always-multiline",
             "imports": "only-multiline",
             "exports": "only-multiline",
-            "functions": "ignore",
+            "functions": "ignore"
         }],
         "no-debugger": 0,
         "no-console": "off",

@@ -5,7 +5,7 @@ import resolve from 'rollup-plugin-node-resolve'; // 在 node_modules 中使用 
 import replace from 'rollup-plugin-replace';
 import filesize from 'rollup-plugin-filesize';
 import clear from 'rollup-plugin-clear';
-import commonjs from 'rollup-plugin-commonjs';// 转换commonjs 为es6
+import cjs from 'rollup-plugin-commonjs';// 转换commonjs 为es6
 import json from 'rollup-plugin-json'; // Convert .json files to ES6 modules
 import svg from 'rollup-plugin-react-svg';
 import alias from 'rollup-plugin-alias';
@@ -39,7 +39,7 @@ export default {
       targets: ['dist'],
       watch: true,
     }),
-    commonjs(),
+    cjs(),
     filesize(),
     json(),
     postcss({
